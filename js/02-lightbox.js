@@ -14,12 +14,7 @@ const onCreateGalleryElevents = galleryItems
 
 gallery.insertAdjacentHTML("afterbegin", onCreateGalleryElevents);
 
-gallery.addEventListener("click", onClickGallery);
-
-function onClickGallery(event) {
-  event.preventDefault();
-  const lightbox = new SimpleLightbox(".gallery .gallery__link", {
-    captionsData: "alt",
-    captionDelay: 250,
-  });
-}
+let lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
