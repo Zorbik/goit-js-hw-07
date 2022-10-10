@@ -21,6 +21,9 @@ gallery.addEventListener("click", onClickGallery);
 
 function onClickGallery(event) {
   event.preventDefault();
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
   const instance = basicLightbox.create(`
     <img src="${event.target.dataset.source}" width="1280">
 `);
@@ -30,7 +33,6 @@ function onClickGallery(event) {
 
   function onEscClose(event) {
     if (event.code === "Escape") {
-      console.log(event);
       instance.close();
       window.removeEventListener("keydown", onEscClose);
     }
