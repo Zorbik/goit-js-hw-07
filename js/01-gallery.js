@@ -24,17 +24,24 @@ function onClickGallery(event) {
   if (event.target.nodeName !== "IMG") {
     return;
   }
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <img src="${event.target.dataset.source}" width="1280">
-`);
+`,
+    {
+      onClose: () => {
+        window.removeEventListener("keydown", onEscClose);
+      },
+    }
+  );
 
   instance.show();
   window.addEventListener("keydown", onEscClose);
 
   function onEscClose(event) {
+    console.log(event.code);
     if (event.code === "Escape") {
       instance.close();
-      window.removeEventListener("keydown", onEscClose);
     }
   }
 }
